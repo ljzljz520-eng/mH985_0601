@@ -25,7 +25,7 @@ func (h *Handler) Ordered(storeID string) ([]model.Record, error) {
 	}
 	sort.SliceStable(items, func(i, j int) bool {
 		if items[i].SortKey == items[j].SortKey {
-			return items[i].ID > items[j].ID
+			return items[i].ID < items[j].ID
 		}
 		return items[i].SortKey < items[j].SortKey
 	})
