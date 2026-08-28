@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "metrics": {
+    "production_loc": 2306,
+    "production_files": 31,
+    "production_packages": 21,
+    "test_files": 21,
+    "production_functions": 140,
+    "decision_points": 338
+  },
+  "persistence": {
+    "module": "go.etcd.io/bbolt",
+    "entities": ["Record", "AuditEvent", "Workflow", "Attachment"],
+    "reopen_test": "TestPersistenceSurvivesReopen"
+  },
+  "workflows": [
+    {
+      "steps": ["register training material", "submit for review", "approve material", "archive approved material"],
+      "test": "TestWorkflowCreateReviewArchive"
+    },
+    {
+      "steps": ["search store materials", "select a result", "change material content", "publish approved content"],
+      "test": "TestWorkflowSearchUpdatePublish"
+    },
+    {
+      "steps": ["import deterministic rows", "validate row fields", "persist accepted records", "report accepted and rejected rows"],
+      "test": "TestWorkflowImportReport"
+    }
+  ]
+}
